@@ -1,15 +1,15 @@
-package pl.mj;
+package pl.mj.service;
 
 import org.junit.Assert;
 import org.junit.Test;
 import pl.mj.exception.IncorrectElementInListException;
 import pl.mj.exception.IncorrectSizeOfListException;
 import pl.mj.exception.NoPrimeFoundException;
-import pl.mj.service.PrimesFounderService;
+import pl.mj.service.PrimesFinderService;
 
 import java.util.*;
 
-public class PrimesFounderServiceTest {
+public class PrimesFinderServiceTest {
 
 
     static final List<Integer> LIST_WITH_THREE_PRIMES = Collections.
@@ -20,48 +20,49 @@ public class PrimesFounderServiceTest {
     static final List<Integer> ONE_ELEMENT_LIST = Collections.
             unmodifiableList(Arrays.asList(8));
 
-    PrimesFounderService primesFounderService = new PrimesFounderService();
+    PrimesFinderService primesFinderService = new PrimesFinderService();
 
     @Test(expected = IncorrectSizeOfListException.class)
     public void shouldReturnIncorrectSizeExceptionWhenListIsTooSmall() throws Exception {
-        primesFounderService.foundPrimes(ONE_ELEMENT_LIST);
+        primesFinderService.foundPrimes(ONE_ELEMENT_LIST);
     }
     @Test(expected = IncorrectSizeOfListException.class)
     public void shouldReturnIncorrectSizeExceptionWhenListIsEmpty() throws Exception {
-        primesFounderService.foundPrimes(EMPTY_LIST);
+        primesFinderService.foundPrimes(EMPTY_LIST);
     }
 
     @Test(expected = NoPrimeFoundException.class)
     public void shouldReturnNoPrimesFoundException() throws Exception {
-        primesFounderService.foundPrimes(LIST_WITH_NO_PRIMES);
+        primesFinderService.foundPrimes(LIST_WITH_NO_PRIMES);
     }
 
     @Test
     public void shouldCheckThatNumbersArePrimes() throws IncorrectElementInListException {
-        Assert.assertTrue(primesFounderService.isPrime(13));
-        Assert.assertTrue(primesFounderService.isPrime(239));
-        Assert.assertTrue(primesFounderService.isPrime(1619));
-        Assert.assertTrue(primesFounderService.isPrime(3221));
+        Assert.assertTrue(primesFinderService.isPrime(13));
+        Assert.assertTrue(primesFinderService.isPrime(239));
+        Assert.assertTrue(primesFinderService.isPrime(1619));
+        Assert.assertTrue(primesFinderService.isPrime(3221));
     }
 
     @Test
     public void shouldCheckThatNumbersAreNotPrimes() throws IncorrectElementInListException {
-        Assert.assertFalse(primesFounderService.isPrime(14));
-        Assert.assertFalse(primesFounderService.isPrime(238));
-        Assert.assertFalse(primesFounderService.isPrime(1626));
-        Assert.assertFalse(primesFounderService.isPrime(322772));
+        Assert.assertFalse(primesFinderService.isPrime(14));
+        Assert.assertFalse(primesFinderService.isPrime(238));
+        Assert.assertFalse(primesFinderService.isPrime(1626));
+        Assert.assertFalse(primesFinderService.isPrime(322772));
     }
     @Test(expected = IncorrectElementInListException.class)
     public void shouldThrowExceptionWhenElementIsSmallerThanTwo() throws IncorrectElementInListException{
-        primesFounderService.isPrime(1);
+        primesFinderService.isPrime(1);
     }
 
     @Test
     public void shouldFindThreePrimesFromGivenData() throws NoPrimeFoundException, IncorrectSizeOfListException {
 
-        Assert.assertTrue(primesFounderService.foundPrimes(LIST_WITH_THREE_PRIMES).contains(13));
-        Assert.assertTrue(primesFounderService.foundPrimes(LIST_WITH_THREE_PRIMES).contains(109));
-        Assert.assertTrue(primesFounderService.foundPrimes(LIST_WITH_THREE_PRIMES).contains(677));
+        Assert.assertEquals(3,primesFinderService.foundPrimes(LIST_WITH_THREE_PRIMES).size());
+        Assert.assertEquals(13,primesFinderService.foundPrimes(LIST_WITH_THREE_PRIMES).get(0));
+        Assert.assertEquals(109,primesFinderService.foundPrimes(LIST_WITH_THREE_PRIMES).get(1));
+        Assert.assertEquals(677,primesFinderService.foundPrimes(LIST_WITH_THREE_PRIMES).get(2));
     }
 
 

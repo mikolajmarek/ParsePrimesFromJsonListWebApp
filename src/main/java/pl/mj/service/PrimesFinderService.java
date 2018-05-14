@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class PrimesFounderService {
+public class PrimesFinderService {
 
     private List<Integer> returnPrimeFromList(List list) {
         return null;
@@ -18,17 +18,11 @@ public class PrimesFounderService {
         if (list.size() < 2) {
             throw new IncorrectSizeOfListException("incorrect size of list");
         } else {
-            List<Integer> primes = list.stream().filter(el -> {
-
-                try {
-                    return isPrime(el);
-                } catch (IncorrectElementInListException e) {
-
-                    e.printStackTrace();
-                    return false;
-                }
-
-            }).collect(Collectors.toList());
+            List<Integer> primes = list.stream()
+                    .filter(this::isPrime)
+                    .distinct()
+                    .sorted()
+                    .collect(Collectors.toList());
             if (primes.size() > 0) {
                 return primes;
             } else {
@@ -45,16 +39,15 @@ public class PrimesFounderService {
 
         if (number < 2) {
             throw new IncorrectElementInListException("this number is incorrect");
-        } else if (number == 2 || number == 3 || number == 5 || number == 7) {
+        } else if (number == 2 || number == 3 || number == 5) {
             return true;
         } else if (number % 2 == 0
                 || number % 3 == 0
                 || number % 5 == 0
-                || number % 5 == 0
-                || number % 7 == 0) {
+                ) {
             return false;
         } else {
-            for (int i = 2; i < number; i++) {
+            for (int i = 7; i < number; i++) {
                 if (number % i == 0) {
                     return false;
                 } else {
