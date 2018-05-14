@@ -19,13 +19,13 @@ public class JsonParserServiceTest {
     @Test
     public void shouldGetInformationAboutListSizeAndValidate() throws IOException, InvalidJsonInputException {
 
-        Assert.assertEquals(10, jsonParserService.ParseJsonToDownloaedData(CORRECT_JSON_IN_STRING).getSize());
-        Assert.assertEquals(10, jsonParserService.ParseJsonToDownloaedData(CORRECT_JSON_IN_STRING).getData().size());
+        Assert.assertEquals(10, jsonParserService.ParseJsonToDownloadedData(CORRECT_JSON_IN_STRING).getSize());
+        Assert.assertEquals(10, jsonParserService.ParseJsonToDownloadedData(CORRECT_JSON_IN_STRING).getData().size());
     }
 
-    @Test (expected = InvalidJsonInputException.class)
-    public void shouldThrowExceptionWhenGivenSizeDifferentFromListSize() throws IOException, InvalidJsonInputException{
-        jsonParserService.ParseJsonToDownloaedData(INCORRECT_JSON_IN_STRING);
+    @Test(expected = InvalidJsonInputException.class)
+    public void shouldThrowExceptionWhenGivenSizeDifferentFromListSize() throws IOException, InvalidJsonInputException {
+        jsonParserService.ParseJsonToDownloadedData(INCORRECT_JSON_IN_STRING);
 
     }
 

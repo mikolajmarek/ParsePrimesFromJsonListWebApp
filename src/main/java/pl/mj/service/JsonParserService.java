@@ -11,13 +11,13 @@ public class JsonParserService {
     ObjectMapper mapper = new ObjectMapper();
     DownloadedData downloadedData;
 
-    public DownloadedData ParseJsonToDownloaedData(String jsonData) throws IOException, InvalidJsonInputException {
+    public DownloadedData ParseJsonToDownloadedData(String jsonData) throws IOException, InvalidJsonInputException {
         DownloadedData data;
 
-        data =  mapper.readValue(jsonData, DownloadedData.class);
-        if (data.getSize() == data.getData().size()){
+        data = mapper.readValue(jsonData, DownloadedData.class);
+        if (data.getSize() == data.getData().size()) {
             return data;
-        }else {
+        } else {
             throw new InvalidJsonInputException("incorrect data in json");
         }
     }
