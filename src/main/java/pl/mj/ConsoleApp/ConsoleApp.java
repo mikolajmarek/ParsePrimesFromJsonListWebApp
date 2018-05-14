@@ -41,7 +41,7 @@ public class ConsoleApp {
        List <Integer> list =  jsonParserService.ParseJsonToDownloadedData(downloadedJson).getData();
         PrimesFinderService primesFinderService = new PrimesFinderService();
 
-        primesFinderService.foundPrimes(list).stream().forEach(e-> System.out.println(e));
+        primesFinderService.foundPrimes(list).stream().forEach(e-> System.out.print(e+"; "));
 
     }
 }
