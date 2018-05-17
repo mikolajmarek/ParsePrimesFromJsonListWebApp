@@ -21,27 +21,22 @@ public class ConsoleApp {
         String password = "abc123";
         String url = "http://dt-gwitczak-recruitment.westeurope.cloudapp.azure.com:8080/rest/task";
         String downloadedJson = null;
-        String downloadedJson2 = null;
-        String downloadedJson3 = null;
+
 
         AuthenticationService authenticationService = new AuthenticationService();
 
-       OkHttpClient okHttpClient;
-       okHttpClient = createAuthenticatedClient(login,password);
-       downloadedJson =  collectStringDataFromUrl(okHttpClient, url);
-       downloadedJson2 = collectStringDataFromUrl(okHttpClient, url);
-       downloadedJson3 = collectStringDataFromUrl(okHttpClient, url);
+        OkHttpClient okHttpClient;
+        okHttpClient = createAuthenticatedClient(login, password);
+        downloadedJson = collectStringDataFromUrl(okHttpClient, url);
 
-//       System.out.println(downloadedJson);
-//        System.out.println(downloadedJson2);
-//        System.out.println(downloadedJson3);
+        System.out.println(downloadedJson);
 
         JsonParserService jsonParserService = new JsonParserService();
 
-       List <Integer> list =  jsonParserService.ParseJsonToDownloadedData(downloadedJson).getData();
+        List<Integer> list = jsonParserService.ParseJsonToDownloadedData(downloadedJson).getData();
         PrimesFinderService primesFinderService = new PrimesFinderService();
 
-        primesFinderService.foundPrimes(list).stream().forEach(e-> System.out.println(e));
-
+        // primesFinderService.foundPrimes(list).stream().forEach(e-> System.out.println(e));
+        System.out.println(primesFinderService.foundPrimes(list).toString());
     }
 }

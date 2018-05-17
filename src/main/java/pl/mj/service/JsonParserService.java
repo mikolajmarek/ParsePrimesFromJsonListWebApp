@@ -6,6 +6,7 @@ import pl.mj.exception.InvalidJsonInputException;
 
 import java.io.IOException;
 
+
 public class JsonParserService {
 
     ObjectMapper mapper = new ObjectMapper();

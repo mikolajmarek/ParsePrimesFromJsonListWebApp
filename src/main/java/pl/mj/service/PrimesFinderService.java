@@ -10,10 +10,6 @@ import java.util.stream.Collectors;
 
 public class PrimesFinderService {
 
-    private List<Integer> returnPrimeFromList(List list) {
-        return null;
-    }
-
     public List foundPrimes(List<Integer> list) throws IncorrectSizeOfListException, NoPrimeFoundException {
         if (list.size() < 2) {
             throw new IncorrectSizeOfListException("incorrect size of list");
